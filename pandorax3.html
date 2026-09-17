@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="robots" content="noindex"> <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PWHRN4W6');</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Ginhox2Pandorax3</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Goldman&display=swap" rel="stylesheet">
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+    <script>
+        const firebaseConfig = {
+          apiKey: "AIzaSyB63ArNE1baNkour3-OosliAJdK13XiEds",
+          authDomain: "icarlso8guinho.firebaseapp.com",
+          projectId: "icarlso8guinho",
+          storageBucket: "icarlso8guinho.firebasestorage.app",
+          messagingSenderId: "493749236688",
+          appId: "1:493749236688:web:decf671b370a70dfa13fd5"
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <style>
+        * { cursor: none !important; }
+        body { pointer-events: none; }
+        input, button { pointer-events: auto; }
+
+        body, html {
+            margin: 0; padding: 0;
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Goldman', sans-serif;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: flex-start;
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+            visibility: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        @media print { body { display: none !important; } }
+
+        button:focus, button.key-pressed {
+            outline: 2px solid #DB0000;
+            background: rgba(219, 0, 0, 0.6) !important;
+            box-shadow: 0 0 15px #DB0000;
+            transform: scale(1.05);
+        }
+
+        #doc-password:focus {
+            border-color: #DB0000;
+            box-shadow: 0 0 12px rgba(219, 0, 0, 0.6);
+        }
+
+        #start-screen {
+            position: absolute;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center; z-index: 10000;
+        }
+
+        #start-screen h2 {
+            font-size: 24px; margin-bottom: 25px;
+        }
+
+        #doc-password {
+            padding: 12px 15px; border-radius: 8px;
+            border: 1px solid #333; background: #111;
+            color: #fff; font-family: 'Goldman', sans-serif;
+            font-size: 12px; text-align: center; width: 280px;
+            outline: none; transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        #viewer-area {
+            display: none; flex-direction: column;
+            align-items: center; justify-content: flex-start;
+            width: 100%; min-height: 100vh; position: relative;
+            padding-top: 40px; padding-bottom: 100px;
+        }
+
+        canvas { box-shadow: 0 0 20px rgba(255,255,255,0.1); }
+
+        #controls {
+            position: fixed;
+            bottom: 25px; right: 25px;
+            background: rgba(10, 10, 10, 0.35); padding: 6px 14px;
+            border-radius: 20px; display: flex; gap: 10px; align-items: center;
+            font-size: 12px; color: #888; backdrop-filter: blur(3px); z-index: 9999;
+        }
+
+        #controls button {
+            background: transparent; color: #fff; border: none;
+            font-family: "Goldman", sans-serif; font-size: 14px;
+            border-radius: 10px; transition: color 0.2s, background 0.2s;
+        }
+
+        #page_count_info span { color: #fff; }
+
+        #back-control {
+            position: fixed;
+            bottom: 25px; left: 25px;
+            background: rgba(10, 10, 10, 0.35); padding: 6px 14px;
+            border-radius: 20px; display: flex; align-items: center;
+            backdrop-filter: blur(3px); z-index: 9999;
+        }
+
+        #back-control button {
+            background: transparent; color: #fff; border: none;
+            font-size: 12px; font-family: "Goldman", sans-serif;
+            border-radius: 10px; transition: color 0.2s, background 0.2s;
+        }
+
+        #watermark-container {
+            position: fixed;
+            top: -100%; left: -100%; width: 300%; height: 300%;
+            pointer-events: none; z-index: 9998;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0.40; transform: rotate(-25deg); overflow: hidden;
+        }
+
+        .watermark-text {
+            font-family: 'Goldman', sans-serif; font-size: 13px; 
+            color: #DB0000; font-weight: 900; white-space: pre-wrap;
+            text-align: justify; text-shadow: 1px 1px 0px #ffffff, -1px -1px 0px #000000;
+            line-height: 1.25; width: 100%; letter-spacing: 0.5px;
+        }
+
+        #blackout-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #000; color: #DB0000;
+            z-index: 999999; display: none;
+            flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; font-family: 'Goldman', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PWHRN4W6"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <div id="blackout-screen">
+        <h1 style="font-size: 32px;">🚫 ACCESO DENEGADO 🚫</h1>
+        <p id="blackout-msg">Incidente registrado en el servidor.</p>
+    </div>
+
+    <div id="start-screen">
+        <h2>📦 Pandorax 💥</h2>
+        <input type="password" id="doc-password" placeholder="> 📟 enter password ↵..." autocomplete="off" />
+    </div>
+
+    <div id="viewer-area">
+        <div id="watermark-container">
+            <div id="watermark-content" class="watermark-text"></div>
+        </div>
+        <canvas id="pdf-canvas"></canvas>
+        
+        <div id="back-control">
+            <button id="back-btn" tabindex="0">◄ Volver al Menú</button>
+        </div>
+
+        <div id="controls">
+            <button id="prev-btn" tabindex="0">&#9668;</button>
+            <button id="up-btn" tabindex="-1">&#9650;</button>
+            <span id="page_count_info"><span id="page_num"></span> / <span id="page_count"></span></span>
+            <button id="down-btn" tabindex="-1">&#9660;</button>
+            <button id="next-btn" tabindex="0">&#9658;</button>
+        </div>
+    </div>
+
+    <script>
+        const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.innerWidth < 768);
+        if (isTouchDevice) {
+            document.body.innerHTML = "<div style='display:flex; height:100vh; width:100vw; background:#000; color:#DB0000; justify-content:center; align-items:center; text-align:center; flex-direction:column;'><h1 style='font-size:30px;'>🚫 TERMINAL RESTRINGIDA 🚫</h1><p style='margin-top:20px;'>Protocolo de seguridad: Conexión denegada.<br>El acceso a este documento solo está permitido desde computadores de escritorio con teclado físico.</p></div>";
+            document.body.style.visibility = "visible";
+            throw new Error("Ejecución detenida: Dispositivo táctil detectado.");
+        }
+
+        let pdfDoc = null, pageNum = 1, pageRendering = false, pageNumPending = null;
+        const canvas = document.getElementById('pdf-canvas'), ctx = canvas.getContext('2d');
+        const auth = firebase.auth();
+        let userEmail = "Usuario Desconocido";
+
+        auth.onAuthStateChanged(user => {
+            if (!user) window.location.href = "auth.html";
+            else {
+                userEmail = user.email; 
+                document.body.style.visibility = "visible"; 
+                setTimeout(() => document.getElementById('doc-password').focus(), 300);
+            }
+        });
+
+        // ---------------------------------------------------------
+        // PROTOCOLO DE EXPULSIÓN POR INACTIVIDAD (5 MINUTOS)
+        // ---------------------------------------------------------
+        let inactivityTimer;
+        const timeLimit = 5 * 60 * 1000;
+
+        function logoutInactiveUser() {
+            const auth = firebase.auth();
+            if (auth.currentUser) {
+                auth.signOut().then(() => {
+                    localStorage.setItem("logoutInProgress", "true");
+                    alert("⏳ Has sido desconectado por inactividad..");
+                    window.location.href = "auth.html";
+                });
+            }
+        }
+
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(logoutInactiveUser, timeLimit);
+        }
+
+        window.onload = resetInactivityTimer;
+        document.onmousemove = resetInactivityTimer;
+        document.onkeydown = resetInactivityTimer;
+        document.ontouchstart = resetInactivityTimer;
+
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('mousedown', e => { if (e.detail !== 0) e.preventDefault(); });
+
+        const navButtons = ['back-btn', 'prev-btn', 'next-btn'];
+        let currentFocusIndex = 2;
+
+        document.addEventListener('keydown', async e => {
+            if (
+                e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && ['i', 'j', 'c'].includes(e.key.toLowerCase())) || 
+                (e.ctrlKey && ['p', 's', 'u', 'c', 'x', 'a', '+', '-'].includes(e.key.toLowerCase())) 
+            ) {
+                e.preventDefault();
+            }
+            
+            if (e.key === 'Enter' && document.activeElement.id === 'doc-password') {
+                const password = document.getElementById('doc-password').value;
+                if (!password) return;
+
+                const elem = document.documentElement;
+                if (elem.requestFullscreen) { elem.requestFullscreen(); }
+                else if (elem.webkitRequestFullscreen) { elem.webkitRequestFullscreen(); }
+
+                await iniciarCargaSegura(password);
+            }
+
+            if (e.key === 'Tab') e.preventDefault();
+
+            if (document.getElementById('viewer-area').style.display === 'flex') {
+                if (e.key === 'ArrowRight') {
+                    currentFocusIndex = (currentFocusIndex + 1) % navButtons.length;
+                    document.getElementById(navButtons[currentFocusIndex]).focus();
+                } else if (e.key === 'ArrowLeft') {
+                    currentFocusIndex = (currentFocusIndex - 1 + navButtons.length) % navButtons.length;
+                    document.getElementById(navButtons[currentFocusIndex]).focus();
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    window.scrollBy({ top: -75, behavior: 'auto' });
+                    document.getElementById('up-btn').classList.add('key-pressed');
+                } else if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    window.scrollBy({ top: 75, behavior: 'auto' });
+                    document.getElementById('down-btn').classList.add('key-pressed');
+                }
+            }
+        });
+
+        document.addEventListener('keyup', (e) => {
+            if (e.key === 'PrintScreen') alert('Capturas estrictamente prohibidas.');
+            if (e.key === 'ArrowUp') {
+                const upBtn = document.getElementById('up-btn');
+                if(upBtn) upBtn.classList.remove('key-pressed');
+            }
+            if (e.key === 'ArrowDown') {
+                const downBtn = document.getElementById('down-btn');
+                if(downBtn) downBtn.classList.remove('key-pressed');
+            }
+        });
+
+        document.addEventListener('wheel', e => {
+            if (e.ctrlKey || e.metaKey) e.preventDefault();
+        }, { passive: false });
+
+        document.addEventListener('gesturestart', e => e.preventDefault());
+        document.addEventListener('gesturechange', e => e.preventDefault());
+        document.addEventListener('gestureend', e => e.preventDefault());
+
+        const blackout = document.getElementById('blackout-screen');
+        const blackoutMsg = document.getElementById('blackout-msg');
+        window.addEventListener('blur', () => { blackoutMsg.innerText = "Pérdida de foco detectada."; blackout.style.display = 'flex'; });
+        window.addEventListener('focus', () => blackout.style.display = 'none');
+        document.addEventListener('mouseleave', () => { blackoutMsg.innerText = "Salida del área de seguridad detectada."; blackout.style.display = 'flex'; });
+        document.addEventListener('mouseenter', () => blackout.style.display = 'none');
+        
+        async function aplicarMarcaDeAgua() {
+            const container = document.getElementById('watermark-content');
+            const fecha = new Date().toLocaleString();
+            let ip = 'Rastreada';
+            try {
+                const res = await fetch('https://api.ipify.org?format=json');
+                const datos = await res.json();
+                ip = datos.ip;
+            } catch(e) {}
+
+            const lineaUserPura   = `[USER: ${userEmail}] `.repeat(28);
+            const lineaDetalles   = `IP:${ip} • ${fecha} • I'll be watching you! • [USER: ${userEmail}] `.repeat(14);
+            const lineaAlerta     = `⚠️ RESTRICTED ⚠️ [USER: ${userEmail}] ⚠️ DO NOT SHARE ⚠️ `.repeat(16);
+            const bloque = `${lineaUserPura}\n${lineaDetalles}\n${lineaAlerta}\n${lineaUserPura}\n\n`;
+            container.textContent = bloque.repeat(35);
+        }
+
+        document.getElementById('back-btn').addEventListener('click', () => {
+            if (document.exitFullscreen) { document.exitFullscreen().catch(err => console.log(err)); }
+            window.location.href = 'menu.html';
+        });
+
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        async function iniciarCargaSegura(password) {
+            try {
+                const response = await fetch('Po3wokoxynwZYZ6saAeaBdMV4cKI0aWMfiE0PZs4FONXtQuLZb.enc');
+                if (!response.ok) throw new Error("Archivo no encontrado");
+                
+                const textoEncriptado = await response.text();
+                const bytes = CryptoJS.AES.decrypt(textoEncriptado, password);
+                const base64PDF = bytes.toString(CryptoJS.enc.Utf8);
+                
+                if (!base64PDF) throw new Error("Contraseña incorrecta");
+
+                const base64Data = base64PDF.split(',')[1];
+                const pdfDatosBinarios = atob(base64Data);
+                const arrayBytes = new Uint8Array(pdfDatosBinarios.length);
+                for (let i = 0; i < pdfDatosBinarios.length; i++) {
+                    arrayBytes[i] = pdfDatosBinarios.charCodeAt(i);
+                }
+
+                document.getElementById('start-screen').style.display = 'none';
+                document.getElementById('viewer-area').style.display = 'flex';
+
+                aplicarMarcaDeAgua();
+
+                pdfDoc = await pdfjsLib.getDocument({ data: arrayBytes }).promise;
+                document.getElementById('page_count').textContent = pdfDoc.numPages;
+                renderPage(pageNum);
+                setTimeout(() => { document.getElementById('next-btn').focus(); }, 100);
+
+            } catch (error) {
+                console.error(error);
+                alert("Error: Contraseña incorrecta o archivo no disponible.");
+                if (document.exitFullscreen) document.exitFullscreen();
+                document.getElementById('doc-password').value = ''; 
+                document.getElementById('doc-password').focus();
+            }
+        }
+
+        async function renderPage(num) {
+            pageRendering = true;
+            const page = await pdfDoc.getPage(num);
+            
+            // ZOOM MANUAL CONFIGURABLE (1.2 = 120%, 1.5 = 150%)
+            const escalaManual = 1.8; 
+            const viewport = page.getViewport({ scale: escalaManual });
+            
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+            await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+            pageRendering = false;
+            document.getElementById('page_num').textContent = num;
+            if (pageNumPending !== null) {
+                renderPage(pageNumPending);
+                pageNumPending = null;
+            }
+        }
+
+        function queueRenderPage(num) {
+            if (pageRendering) pageNumPending = num;
+            else renderPage(num);
+        }
+
+        document.getElementById('prev-btn').addEventListener('click', () => {
+            if (pageNum <= 1) return;
+            pageNum--; queueRenderPage(pageNum);
+        });
+
+        document.getElementById('next-btn').addEventListener('click', () => {
+            if (pageNum >= pdfDoc.numPages) return;
+            pageNum++; queueRenderPage(pageNum);
+        });
+    </script>
+</body>
+</html>

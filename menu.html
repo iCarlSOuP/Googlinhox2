@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta name="robots" content="noindex"> <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PWHRN4W6');</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex, nofollow">
+  <title>Ginhox2TTMBP</title>
+  <link rel="icon" href="assets/guinho.ico" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Goldman&display=swap" rel="stylesheet">
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyB63ArNE1baNkour3-OosliAJdK13XiEds",
+      authDomain: "icarlso8guinho.firebaseapp.com",
+      projectId: "icarlso8guinho",
+      storageBucket: "icarlso8guinho.firebasestorage.app",
+      messagingSenderId: "493749236688",
+      appId: "1:493749236688:web:decf671b370a70dfa13fd5"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+  <style>
+    body {
+      font-family: 'Goldman', sans-serif;
+      background: #000000;
+      color: #b0b0b0;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      visibility: hidden; 
+      line-height: 1.5;
+      /* Bloqueo de selección de texto */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    /* Anti-impresión */
+    @media print { 
+      body { display: none !important; } 
+    }
+
+    /* Pantalla Negra Anti-capturas */
+    #blackout-screen {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        background-color: #000; color: #DB0000;
+        z-index: 999999; display: none;
+        flex-direction: column; justify-content: center;
+        align-items: center;
+        text-align: center; font-family: 'Goldman', sans-serif;
+    }
+
+    /* Marca de Agua Dinámica (Sutil) */
+    #watermark-container {
+        position: fixed;
+        top: -100%; left: -100%;
+        width: 300%; height: 300%;
+        pointer-events: none;
+        z-index: 9998;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.3;
+        /* Menos invasiva */
+        transform: rotate(-25deg);
+        overflow: hidden;
+    }
+    .watermark-text {
+        font-family: 'Goldman', sans-serif;
+        font-size: 13px; 
+        color: #DB0000;
+        font-weight: 900;
+        white-space: pre-wrap;
+        text-align: justify;
+        text-shadow: 1px 1px 0px #ffffff, -1px -1px 0px #000000;
+        line-height: 1.25;
+        width: 100%;
+        letter-spacing: 0.5px;
+    }
+
+    /* Contenedor principal tipo consola */
+    .terminal-container {
+      width: 100%;
+      max-width: 900px;
+      padding: 40px 20px 80px 20px;
+      z-index: 10;
+      position: relative;
+    }
+
+    /* Animación del Título */
+    .header-title {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid #222;
+      padding-bottom: 20px;
+    }
+    
+    .logo { height: 60px; }
+
+    .typewriter-text {
+      font-size: 16px;
+      color: #fff;
+      text-shadow: 0 0 5px rgba(255,255,255,0.3);
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      height: 16px;
+      background-color: #DB0000;
+      vertical-align: middle;
+      transform: translateY(-2px);
+      margin-left: 2px;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Textos Generales y Separadores */
+    .text-block {
+      font-size: 13px;
+      color: #999;
+      margin-bottom: 8px;
+    }
+
+    .text-title {
+      color: #fff;
+      font-size: 15px;
+      margin-top: 30px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: repeating-linear-gradient(90deg, #333, #333 5px, transparent 5px, transparent 10px);
+      margin: 30px 0;
+    }
+
+    .ext-link {
+      color: #DB0000;
+      text-decoration: none;
+      border-bottom: 1px dashed #DB0000;
+      transition: all 0.3s;
+      font-size: 12px;
+      word-break: break-all;
+    }
+    
+    .ext-link:hover {
+      text-shadow: 0 0 8px rgba(219,0,0,0.5);
+    }
+
+    .list-item {
+      font-size: 12px;
+      color: #888;
+      margin-left: 10px;
+      margin-bottom: 6px;
+    }
+
+    /* Listas con viñetas cuadradas */
+    ul.bullet-list {
+      list-style-type: square;
+      padding-left: 20px;
+      color: #aaa;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+    
+    ul.bullet-list li {
+      margin-bottom: 8px;
+    }
+
+    /* Botones de Acción (Archivos Pandora) */
+    .btn-resource {
+      display: block;
+      background: rgba(20, 20, 20, 0.6);
+      color: #fff;
+      border: 1px solid #333;
+      padding: 12px 15px;
+      font-family: 'Goldman', sans-serif;
+      font-size: 12px;
+      text-align: left;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      width: 100%;
+      margin: 10px 0;
+    }
+
+    .btn-resource:hover {
+      border-color: #DB0000;
+      color: #DB0000;
+      box-shadow: 0 0 10px rgba(219, 0, 0, 0.2) inset;
+      transform: translateX(3px);
+    }
+
+    /* Grid de Cards para los Temas */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .grid-cards { grid-template-columns: 1fr; }
+    }
+
+    .topic-card {
+      background: #0a0a0a;
+      border: 1px solid #222;
+      border-radius: 6px;
+      padding: 15px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .topic-card:hover {
+      border-color: #555;
+      box-shadow: 0 0 10px rgba(255,255,255,0.05);
+    }
+
+    .topic-title {
+      color: #fff;
+      font-size: 13px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #222;
+      padding-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .topic-content {
+      font-size: 11px;
+      color: #777;
+    }
+
+    .topic-content div {
+      margin-bottom: 6px;
+    }
+
+    /* Botón de Salida */
+    .logout-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #000;
+      color: #ffffff; /* <- Modificación a blanco */
+      border: 1px solid #222;
+      padding: 8px 15px;
+      font-family: 'Goldman', sans-serif;
+      font-size: 11px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.3s;
+      z-index: 100;
+    }
+    
+    .logout-btn:hover {
+      color: #DB0000;
+      border-color: #DB0000;
+    }
+  </style>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PWHRN4W6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <div id="blackout-screen">
+      <h1 style="font-size: 32px;">🚫 ACCESO DENEGADO 🚫</h1>
+      <p id="blackout-msg">Incidente registrado en el servidor.</p>
+  </div>
+  <div id="watermark-container">
+      <div id="watermark-content" class="watermark-text"></div>
+  </div>
+  
+  <button id="logoutBtn" class="logout-btn">[ ⏏ ] DESCONECTAR</button>
+
+  <div class="terminal-container">
+    
+    <div class="header-title">
+      <img src="assets/guinho.png" alt="Logo" class="logo" />
+      <div>
+        <span class="typewriter-text" id="typed-text"></span><span class="cursor" id="cursor"></span>
+      </div>
+    </div>
+
+    <div class="text-title">SITIO OFICIAL DE TIKTOK PARA LA CERTIFICACIÓN Y RECERTIFICACIÓN DE COMPRA EN MEDIOS</div>
+    
+    <a href="https://ads.tiktok.com/business/es-LA/academy/tiktok-certification" target="_blank" class="ext-link">https://ads.tiktok.com/business/es-LA/academy/tiktok-certification</a>
+
+    <div class="text-title">SITIO OFICIAL DE TIKTOK ACADEMY</div>
+    <a href="https://www.tiktokacademy.com/student/catalog" target="_blank" class="ext-link">https://www.tiktokacademy.com/student/catalog</a>
+
+    <div class="text-block" style="margin-top: 15px;">En este sitio encuentras todos los recursos de estudio:</div>
+    <div class="list-item">> <a href="https://drive.google.com/file/d/1HJcas4OH5vBSvWrPbPNzsNHSmsvGUOdT/view" target="_blank" class="ext-link"> Guía de Estudio v2024/Mayo (Spanish) </a> 👈</div>
+    <div class="list-item">> <a href="https://drive.google.com/file/d/1cMLGNREcSKfgz-53j81vkmhRwUbnYZel/view" target="_blank" class="ext-link"> Temas de Estudio (9) (Spanish) </a> 👈</div>
+    <div class="list-item">> <a href="https://drive.google.com/file/d/1PRvEifi76b--QBkjSEgZYxBZ3aqFTwo5/view" target="_blank" class="ext-link"> Practice Test (English) </a> 👈 (En TikTok Academy existen 2 test en español, es necesario el registro)</div>
+    <div class="list-item">> <a href="https://drive.google.com/file/d/1oBLOzcGkiC6wewR7GkUtFkEqIhm6B4NL/view" target="_blank" class="ext-link"> Guía de Preparación para el Examen Supervisado (English) </a> 👈</div>
+    
+    <div class="section-divider"></div>
+
+    <div class="text-title">SESIONES DE PREPARACIÓN PARA EL EXAMEN DE CERTIFICACIÓN TikTok MBP (ESPAÑOL)</div>
+    <div class="text-block">El 13 y 27 de mayo de 2025 se dieron 2 sesiones en español de preparación para el examen. A continuación te dejo las preguntas de ejemplo en la sesión de estudio para la certificación de compra de medios en TikTok, creo que te pueden ser muy útiles.</div>
+    <button onclick="location.href='pandorax1.html'"class="btn-resource">> TikTok_MBP_Certification_Exam_Study_Session_Final 👈</button>
+
+    <div class="section-divider"></div>
+
+    <div class="text-title">SITIO OFICIAL AGENDAMIENTO TIKTOK MBP - WEBASSESSOR (KRYTERION)</div>
+    <a href="https://webassessor.com/tiktok" target="_blank" class="ext-link"> > https://webassessor.com/tiktok </a>
+    
+    <ul class="bullet-list">
+      <li>En este sitio se realiza el proceso de registro, agendamiento y "Launch" o "Check-in" del Examen el día agendado con 15-20 minutos de anticipación a la hora reservada.</li>
+      <li>El acceso se realiza con el "User" establecido al momento del registro, NO con el correo.</li>
+      <li>El examen es supervisado y consta de 65 preguntas de opción múltiple con única o múltiple respuesta con una duración de 110 minutos.</li>
+      <li>El examen se califica en una escala de 300 a 1000 y se aprueba con un puntaje igual o superior a 700.</li>
+    </ul>
+
+    <div class="section-divider"></div>
+
+    <div class="text-title">RESUMEN DE LOS 9 TEMAS DEL EXAMEN (Peso en el examen %🔥) (Conceptos Clave💡)</div>
+    
+    <div class="grid-cards">
+      <div class="topic-card">
+        <div class="topic-title"> 📌TEMA 1 > Plataformas Cuentas Anuncios (12%)🔥🔥 </div>
+        <div class="topic-content">
+          <div style="color: #aaa;"> TikTok for Business > Paquete de 4 Herramientas: </div>
+          <div style="margin-top: 8px;"> 1. Cuenta de empresa de TikTok </div>
+          <div style="margin-top: 8px;"> 2. TikTok Ads Manager </div>
+          <div style="color: #aaa;"> 3. TikTok Business Center💡</div>
+          <div style="color: #aaa;"> 4. TikTok Creative Center💡</div>
+          <div style="margin-top: 8px;"> Socios de Marketing de TikTok</div>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-title"> 📌TEMA 2 > Aspectos Básicos Creativos (13%)🔥🔥</div>
+        <div class="topic-content">
+          <div style="margin-top: 8px;"> Código de Creatividad (6) > 1. TikTok First / 2. Tendencias / 3. Producción / 4. Estructura / 5. Estimulación / 6. Sonido </div>
+          <div style="color: #aaa;"> Spark Ads (Formas de configuración)💡</div>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-title"> 📌TEMA 3 > Políticas Publicidad (7%)🔥</div>
+        <div class="topic-content">
+          <div style="margin-top: 8px;"> Contenido Prohibido / Restringido / Permitido </div>
+          <div style="color: #aaa;"> Motivos de rechazo de anuncios y apelación💡</div>
+          <div style="color: #aaa;"> Contenido promocional / Colaboración pagada💡</div>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-title"> 📌TEMA 4 > Info General Productos Publicitarios (10%)🔥🔥</div>
+        <div class="topic-content">
+          <div style="color: #aaa;"> Anuncio de marcas > Formatos > TopView / Top Feed / Pulse / Estándar Feed / Subasta Marcas / Branded Mission / Add-on interactivos💡</div>
+          <div style="margin-top: 8px;"> Anuncio de conversión web > Anuncios de compras en video (VSA) (Similar a Catálogo Advantage+ en Meta) </div>
+          <div style="margin-top: 8px;"> Anuncio para generar prospectos (Leads) </div>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-title"> 📌TEMA 5 > Conexiones Datos (10%)🔥🔥</div>
+        <div class="topic-content">
+          <div style="margin-top: 8px;"> TikTok Pixel + API de eventos </div>
+          <div style="margin-top: 8px;"> Plataformas de comercio con integración a TikTok </div>
+          <div style="color: #aaa;"> Eventos y Parámetros Clave💡</div>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-title"> 📌TEMA 6 > Configuración Campañas (22%)🔥🔥🔥🔥 </div>
+        <div class="topic-content">
+          <div style="color: #aaa;"> Campaña / Conjunto de Anuncios / Anuncio💡</div>
+          <div style="color: #aaa;"> Objetivos (8) > 1 Alcance / 2 Tráfico / 3 Visualizaciones de video / 4 Interacción con comunidad / 5 Promoción de App / 6 Generación de prospectos (Leads) / 7 Conversión de sitios web / 8 Venta de productos💡</div>
+          <div style="margin-top: 8px;"> Emplazamiento de anuncios > CapCut / Fizzo / Pangle</div>
+          <div style="color: #aaa;"> Fase de Aprendizaje💡</div>
+          <div style="color: #aaa;"> Split testing / Prueba Comparativa (Prueba A/B)💡</div>
+          <div style="color: #aaa;"> Reglas automatizadas💡</div>
+          <div style="color: #aaa;"> Seguridad de la marca (Normas de la comunidad / Cumplimiento de normas / Responsabilidad / Asociaciones)💡</div>
+          <div style="color: #aaa;"> Filtro de inventario (completo/estándar/limitado)💡</div>
+          <div style="color: #aaa;"> Herramienta de gestión de comentarios💡</div>
+          <div style="margin-top: 8px;"> Automatización de campaña: Optimización presupuesto de campaña (CBO) / Campañas de rendimiento inteligente (SPC)</div>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-title">📌TEMA 7 > Estrategia Segmentación (8%)🔥</div>
+        <div class="topic-content">
+          <div style="margin-top: 8px;"> Segmentación amplificada / Segmentación avanzada </div>
+          <div style="color: #aaa;"> Audiencia Personalizada (Audiencia Conocida) > Audiencia Similar (Reducida - Equilibrada - Amplia)💡</div>
+          <div style="color: #aaa;"> Fuentes de audiencia💡</div>
+          <div style="margin-top: 8px;"> Segmentación inteligente </div>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-title">📌TEMA 8 > Puja Optimización (8%)🔥🔥</div>
+        <div class="topic-content">
+          <div style="color: #aaa;"> Publicación máxima / Límite de costos💡</div>
+          <div style="color: #aaa;"> Modelo de subasta de segundo precio💡</div>
+          <div style="margin-top: 8px;"> Eventos de facturación (Métodos de puja) > CPM / CPC / CPV / Etc... </div>
+          <div style="color: #aaa;"> Optimización de anuncios de Apps (Instalaciones - MAI / Eventos - AEO / Valor - VBO)💡</div>
+          <div style="color: #aaa;"> AEO una vez / AEO cada vez💡</div>
+          <div style="color: #aaa;"> VBO valor más alto / VBO ROAS mínimo💡</div>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-title">📌TEMA 9 > Informes Medición (10%)🔥🔥</div>
+        <div class="topic-content">
+          <div style="color: #aaa;"> Herramienta de Insights de video (Ads Manager)💡</div>
+          <div style="margin-top: 8px;"> Insights de audiencia (Audiencia potencial / Audiencia alcanzada) </div>
+          <div style="color: #aaa;"> Brandlift study / Lift de visitas en tienda / Geo lift / Tune-in lift / MMM / Encuesta poscompra / Lift de ventas / Atribución multitouch / Socios de medición móvil💡</div>
+          <div style="color: #aaa;"> Atribución ( 1d, 7d, 14d, 28d para eventos atribuidos click-through / 1d, 7d para eventos atribuidos view-through )💡</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+    <div class="text-block" style="margin-top: 15px; color: #aaa;">Te dejo por acá unas preguntas de ejemplo que te van a ser de mucha utilidad para preparar el examen, te recomiendo que las estudies muy bien. ⚠️🚨🔞☣️📵☢️🚭 NO divulgar | NO reproducir 🚭☢️📵☣️🔞🚨⚠️ , solo se comparte para que tengan un acercamiento al tipo de preguntas que van a encontrar en el examen real </div>
+    <button onclick="location.href='pandorax2.html'" class="btn-resource">> Tik Tok Tik Tok Tik Tok Tik Tok Tik Tok... ⏱️ 👈</button>
+    
+    <div class="section-divider"></div>
+
+    <div class="text-block" style="margin-top: 15px; color: #aaa;">Finalmente te dejo un paso a paso del proceso de Check-in para la presentación del examen de forma que tengas una idea previa de cómo se desarrollará el examen:</div>
+    <button onclick="location.href='pandorax3.html'" class="btn-resource">> Paso a Paso TikTok Media Buying Professional Check-In "for dummies" 👈</button>
+    
+  </div>
+
+  <script>
+    // -----------------------------------------
+    // Bloqueo de Teclas y Clic Derecho
+    // -----------------------------------------
+    /* === COMENTADO TEMPORALMENTE PARA PRUEBAS GTM === */
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    document.addEventListener('keydown', async e => {
+        if (
+            e.key === 'F12' || 
+            (e.ctrlKey && e.shiftKey && ['i', 'j', 'c'].includes(e.key.toLowerCase())) || 
+            (e.ctrlKey && ['p', 's', 'u', 'c', 'x', 'a', '+', '-'].includes(e.key.toLowerCase())) 
+        ) {
+            e.preventDefault();
+        }
+    });
+    /* ================================================ */
+
+    // -----------------------------------------
+    // Trampa de Pantalla Negra (Anti-Capturas)
+    // -----------------------------------------
+    const blackout = document.getElementById('blackout-screen');
+    const blackoutMsg = document.getElementById('blackout-msg');
+    
+    window.addEventListener('blur', () => { 
+      blackoutMsg.innerText = "Pérdida de foco detectada."; 
+      blackout.style.display = 'flex'; 
+    });
+    window.addEventListener('focus', () => blackout.style.display = 'none');
+    
+    document.addEventListener('mouseleave', () => { 
+      blackoutMsg.innerText = "Salida del área de seguridad detectada."; 
+      blackout.style.display = 'flex'; 
+    });
+    document.addEventListener('mouseenter', () => blackout.style.display = 'none');
+    
+    document.addEventListener('keyup', (e) => {
+        if (e.key === 'PrintScreen') alert('Capturas estrictamente prohibidas.');
+    });
+
+    // -----------------------------------------
+    // Lógica de Autenticación de Firebase y Marca de Agua
+    // -----------------------------------------
+    const auth = firebase.auth();
+    let userEmail = "Usuario Desconocido";
+
+    auth.onAuthStateChanged(user => {
+      const logoutFlag = localStorage.getItem("logoutInProgress");
+   
+      if (!user) {
+        if (logoutFlag) {
+          localStorage.removeItem("logoutInProgress");
+          return; 
+        }
+          alert("🔒 Inicia sesión Trkkie!");
+          window.location.href = "auth.html";
+      } else {
+        userEmail = user.email;
+        document.body.style.visibility = "visible";
+        iniciarTypewriter(); 
+        aplicarMarcaDeAgua(); 
+      }
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", async () => {
+      localStorage.setItem("logoutInProgress", "true");
+      await auth.signOut();
+      alert("⚠️ Game Over");
+      window.location.href = "auth.html";
+    });
+
+    // -----------------------------------------
+    // Generador de Marca de Agua Dinámica
+    // -----------------------------------------
+    async function aplicarMarcaDeAgua() {
+        const container = document.getElementById('watermark-content');
+        const fecha = new Date().toLocaleString();
+        let ip = 'Rastreada';
+        try {
+            const res = await fetch('https://api.ipify.org?format=json');
+            const datos = await res.json();
+            ip = datos.ip;
+        } catch(e) {}
+
+        const lineaUserPura   = `[USER: ${userEmail}] `.repeat(28);
+        const lineaDetalles   = `IP:${ip} • ${fecha} • I'll be watching you! • [USER: ${userEmail}] `.repeat(14);
+        const lineaAlerta     = `⚠️ RESTRICTED ⚠️ [USER: ${userEmail}] ⚠️ DO NOT SHARE ⚠️ `.repeat(16);
+        const bloque = `${lineaUserPura}\n${lineaDetalles}\n${lineaAlerta}\n${lineaUserPura}\n\n`;
+        container.textContent = bloque.repeat(35);
+    }
+
+    // ---------------------------------------------------------
+    // PROTOCOLO DE EXPULSIÓN POR INACTIVIDAD (5 MINUTOS)
+    // ---------------------------------------------------------
+    let inactivityTimer;
+    const timeLimit = 5 * 60 * 1000; // 5 minutos representados en milisegundos
+
+    function logoutInactiveUser() {
+        const auth = firebase.auth();
+        if (auth.currentUser) {
+            auth.signOut().then(() => {
+                localStorage.setItem("logoutInProgress", "true");
+                alert("⏳ Has sido desconectado por inactividad..");
+                window.location.href = "auth.html";
+            });
+        }
+    }
+
+    function resetInactivityTimer() {
+        clearTimeout(inactivityTimer);
+        inactivityTimer = setTimeout(logoutInactiveUser, timeLimit);
+    }
+
+    // Escuchar cualquier interacción del usuario para reiniciar el reloj de 5 minutos
+    window.onload = resetInactivityTimer;
+    document.onmousemove = resetInactivityTimer;
+    document.onkeydown = resetInactivityTimer;
+    document.ontouchstart = resetInactivityTimer;
+
+    // -----------------------------------------
+    // Animación Typewriter de Terminal
+    // -----------------------------------------
+    const textToType = '> Primera regla de la ayuda "guiño guiño" es NO hablar de la ayuda "guiño guiño" ';
+    const speed = 40; 
+    let i = 0;
+
+    function iniciarTypewriter() {
+      const targetElement = document.getElementById("typed-text");
+      const cursorElement = document.getElementById("cursor");
+      
+      function typeWriter() {
+        if (i < textToType.length) {
+          targetElement.innerHTML += textToType.charAt(i);
+          i++;
+          setTimeout(typeWriter, speed);
+        } else {
+          cursorElement.style.animation = "blink 1s step-end infinite";
+        }
+      }
+      typeWriter();
+    }
+  </script>
+</body>
+</html>

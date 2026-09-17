@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta name="robots" content="noindex"> <!-- Evitar Indexación > Googlebot o Bingbot -->
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PWHRN4W6');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex, nofollow">
+  <title>Ginhox2Login</title>
+  <link rel="icon" href="assets/guinho.ico" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Goldman" rel="stylesheet">
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyB63ArNE1baNkour3-OosliAJdK13XiEds",
+      authDomain: "icarlso8guinho.firebaseapp.com",
+      projectId: "icarlso8guinho",
+      storageBucket: "icarlso8guinho.firebasestorage.app",
+      messagingSenderId: "493749236688",
+      appId: "1:493749236688:web:decf671b370a70dfa13fd5"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+    <style>
+      @layer autofill-fix;
+      body {
+        font-family: 'Goldman', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #000000;
+        margin: 0;
+        color: #b0b0b0;
+        overflow: hidden;
+      }
+      
+      .card {
+        background: rgba(10, 10, 10, 0.85);
+        padding: 35px 30px;
+        border-radius: 8px;
+        border: 1px solid #DB0000;
+        box-shadow: 0 0 25px rgba(219, 0, 0, 0.35), 0 0 10px rgba(219, 0, 0, 0.15) inset;
+        width: 280px; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 3;
+        animation: fadeIn 0.6s ease-out forwards;
+      }
+      
+      .header-title {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px; 
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .logo {
+        height: 60px;
+      }
+
+      .typewriter-text {
+        font-size: 20px; 
+        color: #fff;
+        text-shadow: 0 0 5px rgba(255,255,255,0.3);
+      }
+
+      .cursor {
+        display: inline-block;
+        width: 10px;
+        height: 20px;
+        background-color: #DB0000;
+        vertical-align: middle;
+        transform: translateY(-2px);
+        margin-left: 2px;
+        animation: blink 1s step-end infinite;
+      }
+
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+      
+      form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      input {
+        font-family: "Goldman", sans-serif;
+        margin-bottom: 10px; 
+        padding: 10px 12px;
+        width: 220px;
+        font-size: 12px;
+        border: 1px solid #333;
+        border-radius: 6px;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        background-color: #111;
+        color: #fff;
+        text-align: center;
+      }
+      
+      input::placeholder {
+        color: #666;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: #DB0000;
+        box-shadow: 0 0 10px rgba(219, 0, 0, 0.3);
+      }
+      
+      input, input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
+        font-family: "Goldman", sans-serif !important;
+        font-size: 12px !important;
+        -webkit-text-fill-color: #fff !important;
+        transition: background-color 9999s ease-in-out 0s !important;
+        -webkit-box-shadow: 0 0 0px 1000px #111 inset !important;
+      } 
+
+      input:-webkit-autofill::first-line {
+        font-family: "Goldman", sans-serif !important;
+        font-size: 12px !important;
+      }
+
+      @layer autofill-fix {
+        input:-webkit-autofill {
+          animation-name: autofillReset;
+          animation-fill-mode: both;
+          animation-duration: 1ms;
+          font-family: "Goldman", sans-serif !important;
+          font-size: 12px !important;
+          -webkit-text-fill-color: #fff !important;
+        }
+      }
+      @keyframes autofillReset {
+        0% { font-family: "Goldman", sans-serif; }
+        100% { font-family: "Goldman", sans-serif; }
+      }
+      
+      button {
+        padding: 10px 14px;
+        background: #050505;
+        color: #fff;
+        border: 1px solid #333;
+        border-radius: 6px;
+        font-family: "Goldman", sans-serif;
+        font-size: 12px;
+        cursor: pointer;
+        letter-spacing: 0.5px;
+        transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease, color 0.2s ease;
+        width: 246px;
+        margin-top: 5px;
+      }
+      
+      button:hover {
+        border-color: #DB0000;
+        color: #DB0000;
+        box-shadow: 0 0 10px rgba(219, 0, 0, 0.2) inset;
+        transform: translateY(-2px);
+      }
+      
+      button:active {
+        transform: translateY(1px);
+        box-shadow: 0 0 5px rgba(219, 0, 0, 0.2) inset;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .loading-text {
+        font-size: 14px;
+        letter-spacing: 2px;
+        animation: blinkText 1.5s infinite;
+        min-height: 20px; 
+      }
+      
+      @keyframes blinkText {
+        0%, 100% { opacity: 1; text-shadow: 0 0 8px rgba(219,0,0,0.5); }
+        50% { opacity: 0.4; text-shadow: none; }
+      }
+
+      /* -----------------------------------------
+         Estilos para el efecto BOOM!
+         ----------------------------------------- */
+      .boom-effect {
+        position: absolute;
+        width: 80px; /* Tamaño pequeñito del cómic burst */
+        height: auto;
+        pointer-events: none; /* Para que no bloquee otros clics */
+        z-index: 100000; /* Asegura que esté por encima de TODO */
+        transform: translate(-50%, -50%) scale(0);
+        animation: boomPop 0.5s ease-out forwards; /*Tiempo del Boom (SINCRONIZAR con el setTimeout del telón*/
+      }
+      
+      @keyframes boomPop {
+        0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+        50% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+        100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+      }
+    </style>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PWHRN4W6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <div id="boot-screen" style="position:fixed; top:0; left:0; width:100vw; height:100vh; background:#000; color:#DB0000; z-index:99999; display:flex; justify-content:center; align-items:center; cursor:pointer; font-family:'Goldman', sans-serif;">
+    <p class="loading-text" id="boot-typed-text"></p>
+  </div>
+
+  <div class="card">
+    <div class="header-title">
+      <img src="assets/guinho.png" alt="Guiño Logo" class="logo" />
+      <div>
+        <span class="typewriter-text" id="typed-text"></span><span class="cursor" id="cursor"></span>
+      </div>
+    </div>
+
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="> 📧 user_email" required autocomplete="off" />
+      <input type="password" id="password" placeholder="> 🔑 password" required autocomplete="off" />
+      <button type="submit"> ► I want to play a game</button>
+    </form>
+  </div>
+
+  <script>
+    // -----------------------------------------
+    // Animación Typewriter Principal (Logo)
+    // -----------------------------------------
+    const textToType = '> Guiño Guiño...';
+    const speed = 150; 
+    const pauseTime = 2000; 
+    let i = 0;
+    
+    function typeWriter() {
+      const targetElement = document.getElementById("typed-text");
+      if (i < textToType.length) {
+        targetElement.innerHTML += textToType.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      } else {
+        setTimeout(() => {
+          targetElement.innerHTML = '';
+          i = 0;
+          typeWriter();
+        }, pauseTime);
+      }
+    }
+
+    // -----------------------------------------
+    // Animación Typewriter para el Telón (Kaboom)
+    // -----------------------------------------
+    // Velocidad reducida a 40ms para que se escriba rápido y no aburra al usuario
+    const bootTextStr = '> Enter at Your Own Risk (Kaboom) ► Launch the Nukes ► Initiate Self-Destruct.. ';
+    const bootSpeed = 30; /*velocidad > 20 rápido - 80 lento*/
+    const bootPauseTime = 2500;
+    let bootIndex = 0;
+    
+    function bootTypeWriter() {
+      const bootScreen = document.getElementById('boot-screen');
+      const bootTarget = document.getElementById("boot-typed-text");
+      
+      if (bootScreen.style.display !== 'none') {
+        if (bootIndex < bootTextStr.length) {
+          bootTarget.innerHTML += bootTextStr.charAt(bootIndex);
+          bootIndex++;
+          setTimeout(bootTypeWriter, bootSpeed);
+        } else {
+          setTimeout(() => {
+            if (bootScreen.style.display !== 'none') { 
+              bootTarget.innerHTML = '';
+              bootIndex = 0;
+              bootTypeWriter();
+            }
+          }, bootPauseTime);
+        }
+      }
+    }
+
+    // -----------------------------------------
+    // Iniciar SOLO el telón al cargar la página
+    // -----------------------------------------
+    window.onload = () => {
+      bootTypeWriter(); 
+      // Omitimos el inicio de la animación del logo aquí.
+    };
+
+    // -----------------------------------------
+    // Efecto Boom y Desbloqueo del Telón
+    // -----------------------------------------
+    document.getElementById('boot-screen').addEventListener('click', function(e) {
+      // 1. Prevenir doble clic mientras hace la animación
+      if (this.classList.contains('clicked')) return;
+      this.classList.add('clicked');
+
+      // 2. Esconder las letras del telón inmediatamente para dar el impacto
+      document.getElementById('boot-typed-text').style.display = 'none';
+
+      // 3. Crear el comic burst 💥 justo en la coordenada donde el usuario hizo clic
+      const boomImg = document.createElement('img');
+      boomImg.src = 'assets/boomcomicburst.png'; // <- Aquí llama a tu imagen
+      boomImg.className = 'boom-effect';
+      boomImg.style.left = e.clientX + 'px'; 
+      boomImg.style.top = e.clientY + 'px';  
+      document.body.appendChild(boomImg);
+
+      // 4. Esperar 400ms (lo que dura el pop-up) para revelar el login
+      setTimeout(() => {
+        this.style.display = 'none';              // Quita el telón
+        document.getElementById('email').focus(); // Enfoca la caja del correo
+        typeWriter();                             // AHORA SÍ arranca '> Guiño Guiño...'
+        boomImg.remove();                         // Limpia la imagen de la memoria del navegador
+      }, 500);                                    // <--- Tiempo de espera para quitar el telón (SINCRONIZAR con el CSS de .boom-effect)
+    });
+
+    // -----------------------------------------
+    // Lógica de Autenticación de Firebase
+    // -----------------------------------------
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const auth = firebase.auth();
+      
+      try {
+        const userCredential = await auth.signInWithEmailAndPassword(email, password);
+        const user = userCredential.user;
+
+        if (!user.emailVerified) {
+          await user.sendEmailVerification();
+          await auth.signOut();
+          alert("⚠️ ALERTA DE SEGURIDAD:\nTu cuenta no está verificada. Te hemos enviado un enlace de confirmación a tu correo.\n\nHaz clic en el enlace de tu bandeja de entrada (revisa SPAM) y vuelve a iniciar sesión.");
+        } else {
+
+          /* =======================================================
+             NUEVO CÓDIGO: INYECTAR EL USER-ID AL DATALAYER DE GTM
+             ======================================================= */
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            'event': 'login_exitoso',
+            'user_id': user.uid
+          });
+          /* ======================================================= */
+
+          window.location.href = "menu.html";
+        }
+  
+      } catch (error) {
+        alert("⚠️ Error de autenticación. Verifica tus credenciales.");
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>
